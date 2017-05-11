@@ -1,0 +1,53 @@
+<!DOCTYPE qjackctlSession>
+<session name="session2">
+ <client name="jack_mixer">
+  <port type="out" name="MAIN L">
+   <connect port="playback_1" client="system"/>
+  </port>
+  <port type="out" name="MAIN R">
+   <connect port="playback_2" client="system"/>
+  </port>
+  <port type="in" name="midi in"/>
+  <port type="out" name="Monitor L"/>
+  <port type="out" name="Monitor R"/>
+  <port type="in" name="Mixer L">
+   <connect port="capture_1" client="system"/>
+  </port>
+  <port type="in" name="Mixer R">
+   <connect port="capture_2" client="system"/>
+  </port>
+  <port type="out" name="Mixer Out L"/>
+  <port type="out" name="Mixer Out R"/>
+  <port type="in" name="mixer2 L">
+   <connect port="out_0" client="MPlayer [8955]"/>
+  </port>
+  <port type="in" name="mixer2 R">
+   <connect port="out_1" client="MPlayer [8955]"/>
+  </port>
+  <port type="out" name="mixer2 Out L"/>
+  <port type="out" name="mixer2 Out R"/>
+ </client>
+ <client name="system">
+  <port type="out" name="capture_1">
+   <connect port="Mixer L" client="jack_mixer"/>
+  </port>
+  <port type="out" name="capture_2">
+   <connect port="Mixer R" client="jack_mixer"/>
+  </port>
+  <port type="in" name="playback_1">
+   <connect port="MAIN L" client="jack_mixer"/>
+  </port>
+  <port type="in" name="playback_2">
+   <connect port="MAIN R" client="jack_mixer"/>
+  </port>
+ </client>
+ <client name="MPlayer [8955]">
+  <port type="out" name="out_0">
+   <connect port="mixer2 L" client="jack_mixer"/>
+  </port>
+  <port type="out" name="out_1">
+   <connect port="mixer2 R" client="jack_mixer"/>
+  </port>
+ </client>
+</session>
+

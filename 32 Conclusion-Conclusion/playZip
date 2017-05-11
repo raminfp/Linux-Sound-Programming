@@ -1,0 +1,12 @@
+#!/bin/bash
+
+VLC_OPTS=" -I luaintf --lua-intf cli   --play-and-exit --aout jack"
+
+HTTP=http:/
+
+[ ! -d /tmp/karaoke ] && mkdir /tmp/karaoke
+rm -f /tmp/karaoke/*
+wget "${HTTP}$*" -O /tmp/karaoke/tmp.zip
+unzip -d /tmp/karaoke /tmp/karaoke/tmp.zip
+rm /tmp/karaoke/tmp.zip
+vlc $VLC_OPTS /tmp/karaoke/*.??3
